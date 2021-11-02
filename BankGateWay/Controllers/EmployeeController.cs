@@ -57,8 +57,8 @@ namespace BankGateWay.Controllers
             return BadRequest("Invalid User");
         }
         // PUT api/<EmployeeController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{Employeeid}")]
+        public void Put(int Employeeid, [FromBody] string value)
         {
         }
 

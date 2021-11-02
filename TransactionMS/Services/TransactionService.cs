@@ -19,8 +19,8 @@ namespace TransactionMS.Services
         
         public string DepositMoney(DepositDTO depositDTO)
         {
-            try
-            {
+            //try
+            //{
                 string status = "";
                 using (var client = new HttpClient())
                 {
@@ -39,12 +39,12 @@ namespace TransactionMS.Services
                 UpdateTransactionHistory("DEPOSIT", 1, depositDTO.AccountId, depositDTO.Amount, status);
 
                 return status;
-        }
-            catch (Exception)
-            {
+      //  }
+            //catch (Exception)
+            //{
 
-                return "Navve  DOWN";
-            }
+            //    return "Navve  DOWN";
+            //}
 
 
 
@@ -52,8 +52,8 @@ namespace TransactionMS.Services
 
         public string WithdrawMoney(DepositDTO depositDTO)
         {
-            try
-            {
+            //try
+            //{
                 string status = "";
                 using (var client = new HttpClient())
                 {
@@ -71,20 +71,20 @@ namespace TransactionMS.Services
                 }
                 UpdateTransactionHistory("WITHDRAW", depositDTO.AccountId, 1, depositDTO.Amount, status);
                 return status;
-            }
-            catch (Exception)
-            {
+           // }
+            //catch (Exception)
+            //{
 
-                return "SERRVER DOWN";
-            }
+            //    return "SERRVER DOWN";
+            //}
            
         }
 
         public StatusDTO Transfer(TransferDTO transferDTO)
         {
             StatusDTO statusDTO = new();
-            try
-            {
+            //try
+            //{
                 using (var client = new HttpClient())
                 {
                     client.BaseAddress = new Uri("http://localhost:49937/api/");
@@ -99,12 +99,12 @@ namespace TransactionMS.Services
 
                     }
                 }
-            }
-            catch (Exception)
-            {
+          //  }
+            //catch (Exception)
+            //{
 
-                return null;
-            }
+            //    return null;
+            //}
             
 
             if (statusDTO.status=="SUCESS" && statusDTO.ToAccountstatus == "SUCESS")
@@ -137,9 +137,9 @@ namespace TransactionMS.Services
 
         }
 
-        public IList<TransactionHistory> getTransactions(int customerId)
+        public List<TransactionHistory> getTransactions(int customerId)
         {
-            IList<TransactionHistory> transactionHistories = null;
+            List<TransactionHistory> transactionHistories = null;
             transactionHistories = _Context.TransactionHistories.Where(i => i.ToAccount == customerId || i.FromAccount == customerId ).ToList();
             return transactionHistories;
         }

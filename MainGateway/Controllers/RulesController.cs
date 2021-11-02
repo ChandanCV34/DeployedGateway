@@ -14,7 +14,7 @@ namespace MainGateway.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+   // [Authorize]
     [EnableCors("MyPolicy")]
     public class RulesController : ControllerBase
     {
@@ -25,13 +25,12 @@ namespace MainGateway.Controllers
             _ruleService = ruleService;
         }
         // GET: api/<RulesController>
-       
 
-        // GET api/<RulesController>/5
-        [HttpGet("id")]
-        public string evaluateMinBal(int id, [FromQuery] float balance)
+
+        [HttpGet("Accountid")]
+        public string evaluateMinBal(int Accountid, [FromQuery] float balance)
         {
-            return _ruleService.evaluateMinBal(id, balance);
+            return _ruleService.evaluateMinBal(Accountid, balance);
 
         }
         [Route("/getServiceCharges")]

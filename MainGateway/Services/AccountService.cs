@@ -12,6 +12,32 @@ namespace MainGateway.Services
     {
 
 
+        //public AccountDTO CreateAccount(AccountDTO customerId)
+        //{
+        //    AccountDTO account = null;
+        //    string status = "SUCESS ";
+        //    using (var client = new HttpClient())
+        //    {
+        //        client.BaseAddress = new Uri("http://localhost:49937/api/");
+        //        var PostTask = client.PostAsJsonAsync<AccountDTO>("Account/CreateAccount", customerId);
+        //        PostTask.Wait();
+        //        var Result = PostTask.Result;
+        //        if (Result.IsSuccessStatusCode)
+        //        {
+        //            var data = Result.Content.ReadFromJsonAsync<AccountDTO>();
+        //            data.Wait();
+        //           account = data.Result;
+        //          //  status = data.Result;
+        //            account.CustomerId = customerId.CustomerId;
+        //        //   status = "SUCESS";
+
+
+        //        }
+        //    }
+        //    return account;
+        //}
+
+
         public string CreateAccount(AccountDTO customerId)
         {
             AccountDTO account = null;
@@ -24,13 +50,13 @@ namespace MainGateway.Services
                 var Result = PostTask.Result;
                 if (Result.IsSuccessStatusCode)
                 {
-                    var data = Result.Content.ReadFromJsonAsync<AccountDTO>();
+                    var data = Result.Content.ReadAsStringAsync();
                     data.Wait();
-                   account = data.Result;
-                  //  status = data.Result;
-                    account.CustomerId = customerId.CustomerId;
-                //   status = "SUCESS";
-                
+                   // account = data.Result;
+                      status = data.Result;
+                   // account.CustomerId = customerId.CustomerId;
+                    //   status = "SUCESS";
+
 
                 }
             }

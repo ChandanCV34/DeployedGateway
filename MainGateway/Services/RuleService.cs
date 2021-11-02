@@ -20,7 +20,7 @@ namespace MainGateway.Services
                 {
 
                     client.BaseAddress = new Uri("http://localhost:5000/api/");
-                    var postTask = client.GetAsync("Rules/id?id=" + accountId+ "&balance="+balance);
+                    var postTask = client.GetAsync("Rules/accountId?accountId=" + accountId+ "&balance="+balance);
                     postTask.Wait();
                     var result = postTask.Result;
                     if (result.IsSuccessStatusCode)

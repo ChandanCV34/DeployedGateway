@@ -35,13 +35,13 @@ namespace CustomerLogin.Controllers
         }
 
         // GET api/<CustomerController>/5
-        [HttpGet("{id}")]
-        public Customer Get(int id)
+        [HttpGet("{Customerid}")]
+        public Customer Get(int Customerid)
         {
 
-            if (_customerService.GetCustomer(id) != null)
+            if (_customerService.GetCustomer(Customerid) != null)
             {
-                return _customerService.GetCustomer(id);
+                return _customerService.GetCustomer(Customerid);
             }
             return null;
         }
@@ -68,6 +68,17 @@ namespace CustomerLogin.Controllers
             return BadRequest("ID Already Exists");
         }
 
+        [Route("Update")]
+        [HttpPost]
+        public ActionResult<CustomerDTO> Update([FromBody] CustomerDTO customer)
+        {
+            var CustomerDTO = _customerService.Update(customer);
+            if (CustomerDTO != null)
+                return Ok(CustomerDTO);
+            return BadRequest("Please Enter Valid CustomerID");
+
+        }
+
         // PUT api/<CustomerController>/5
         [Route("Login")]
         [HttpPost]
@@ -81,10 +92,6 @@ namespace CustomerLogin.Controllers
             return BadRequest("Invalid User");
         }
 
-        // DELETE api/<CustomerController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+       
     }
 }

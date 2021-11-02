@@ -14,7 +14,7 @@ namespace MainGateway.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+   // [Authorize]
     [EnableCors("MyPolicy")]
     public class TransactionHistoryController : ControllerBase
     {
@@ -25,31 +25,32 @@ namespace MainGateway.Controllers
             _service = transactionService;
         }
         // GET: api/<TransactionHistoryController>
-        [HttpGet("getTransactions/{id}")]
-        public IList<TransactionHistoryDTO> Get(int id)
+        [HttpGet("getTransactions/{Accountid}")]
+        public async Task<ActionResult<IList<TransactionHistoryDTO>>> Get(int Accountid)
         {
-            return _service.getTransactions(id);
+            return _service.getTransactions(Accountid);
         }
 
 
         // POST api/<TransactionHistoryController>
         [Route("Deposit")]
         [HttpPost]
-        public string Deposit([FromBody] DepositDTO value)
+        public async Task<ActionResult<string>> Deposit([FromBody] DepositDTO value)
         {
             return _service.DepositMoney(value);
         }
 
         [Route("Withdraw")]
         [HttpPost]
-        public string Withdraw([FromBody] DepositDTO value)
+        public async Task<ActionResult<string>> Withdraw([FromBody] DepositDTO value)
         {
             return _service.WithdrawMoney(value);
         }
 
+
         [Route("Transfer")]
         [HttpPost]
-        public StatusDTO Transfer([FromBody] TransferDTO value)
+        public async Task<ActionResult<StatusDTO>> Transfer([FromBody] TransferDTO value)
         {
             return _service.Transfer(value);
         }

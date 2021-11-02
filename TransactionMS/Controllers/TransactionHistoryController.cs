@@ -30,29 +30,30 @@ namespace TransactionMS.Controllers
 
         // GET api/<TransactionHistoryController>/5
         [HttpGet("getTransactions/{id}")]
-        public IList<TransactionHistory> Get(int id)
+        public async Task<ActionResult<IList<TransactionHistory>>> Get(int id)
         {
             return _service.getTransactions(id);
         }
 
+
         // POST api/<TransactionHistoryController>
         [Route("Deposit")]
         [HttpPost]
-        public string Deposit([FromBody] DepositDTO value)
+        public async Task<ActionResult<string>> Deposit([FromBody] DepositDTO value)
         {
             return _service.DepositMoney(value);
         }
 
         [Route("Withdraw")]
         [HttpPost]
-        public string Withdraw([FromBody] DepositDTO value)
+        public async Task<ActionResult<string>> Withdraw([FromBody] DepositDTO value)
         {
             return _service.WithdrawMoney(value);
         }
 
         [Route("Transfer")]
         [HttpPost]
-        public StatusDTO Transfer([FromBody] TransferDTO value)
+        public async Task<ActionResult<StatusDTO>> Transfer([FromBody] TransferDTO value)
         {
             return _service.Transfer(value);
         }

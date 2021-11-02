@@ -99,6 +99,44 @@ namespace CustomerLogin.Services
             List<Customer> customers = _customerContext.customers.ToList();
             return customers;
         }
+        public CustomerDTO Update(CustomerDTO customer)
+        {
+            int flag = 0;
+            try
+            {
+                using var hmac = new HMACSHA512();
+                foreach (var item in _customerContext.customers)
+                {
+                    if (item.CustomerID == customer.CustomerID)
+                    {
+
+                        flag = 1;
+                        item.Name = customer.Name;
+                        item.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(customer.Password));
+                        item.PasswordSalt = hmac.Key;
+                        item.Address = customer.Address;
+                        item.Phone = customer.Phone;
+                        item.Email = customer.Email;
+                        item.PANnumber = customer.PANnumber;
+                        item.Aadhaarnumber = customer.Aadhaarnumber;
+                        item.DateOfBirth = customer.DateOfBirth;
+                    }
+                   
+                }
+                if(flag==1)
+                {
+                    _customerContext.SaveChanges();
+                    return customer;
+                }
+                
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            
+            return null;
+        }
         public Customer GetCustomer(int id)
         {
             Customer FoundCustomer = null;

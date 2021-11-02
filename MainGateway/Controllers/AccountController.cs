@@ -47,13 +47,13 @@ namespace MainGateway.Controllers
         }
 
         // POST api/<AccountController>
-        [Route("CreateAccount")]
-        [HttpPost]
-        public async Task<string> Post([FromBody] AccountDTO customerId)
-        {
-            return _accountservice.CreateAccount(customerId);
+        //[Route("/CreateAccount")]
+        //[HttpPost]
+        //public async Task<AccountDTO> Post([FromBody] AccountDTO customerId)
+        //{
+        //    return _accountservice.CreateAccount(customerId);
 
-        }
+        //}
 
         // PUT api/<AccountController>/5
         [Route("getAccountStatement")]
@@ -62,8 +62,15 @@ namespace MainGateway.Controllers
         {
             return _accountservice.GetAccountStatement(statementDTO);
         }
+        [Route("CreateAccount")]
+        [HttpPost]
+        public async Task<string> Post([FromBody] AccountDTO customerId)
+        {
+            return _accountservice.CreateAccount(customerId);
+
+        }
 
 
-        
+
     }
 }

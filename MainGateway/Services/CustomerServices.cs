@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace MainGateway.Services
@@ -50,6 +51,25 @@ namespace MainGateway.Services
                     data.Wait();
                     customer = data.Result;
                     customer.JwtToken = _tokenservice.CreateToken(customer.Email);
+                }
+            }
+            return customer;
+        }
+        public CustomerDTO Update(CustomerDTO customerDTO)
+        {
+            CustomerDTO customer = null;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:32389/api/");
+                var PostTask = client.PostAsJsonAsync<CustomerDTO>("Customer/Update", customerDTO);
+                PostTask.Wait();
+                var Result = PostTask.Result;
+                if (Result.IsSuccessStatusCode)
+                {
+                    var data = Result.Content.ReadFromJsonAsync<CustomerDTO>();
+                    data.Wait();
+                    customer = data.Result;
+                  
                 }
             }
             return customer;

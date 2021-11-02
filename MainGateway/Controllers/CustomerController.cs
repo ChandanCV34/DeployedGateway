@@ -33,11 +33,11 @@ namespace MainGateway.Controllers
         }
 
         // GET api/<CustomerController>/5
-        [HttpGet("{id}")]
+        [HttpGet("{Customerid}")]
        
-        public async Task<CustomerDTO> Get(int id)
+        public async Task<CustomerDTO> Get(int Customerid)
         {
-            return _customerservices.GetCustomer(id);
+            return _customerservices.GetCustomer(Customerid);
         }
 
         // POST api/<CustomerController>
@@ -65,10 +65,15 @@ namespace MainGateway.Controllers
             return BadRequest("Invalid User");
         }
 
-        // DELETE api/<CustomerController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [Route("Update")]
+        [HttpPost]
+        public ActionResult<CustomerDTO> Update([FromBody] CustomerDTO customer)
         {
+            var CustomerDTO = _customerservices.Update(customer);
+            if (CustomerDTO != null)
+                return Ok(CustomerDTO);
+            return BadRequest("Please Enter Valid CustomerID");
+
         }
     }
 }

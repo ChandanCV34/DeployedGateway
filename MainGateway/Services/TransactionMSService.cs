@@ -39,8 +39,8 @@ namespace MainGateway.Services
 
         public string DepositMoney(DepositDTO depositDTO)
         {
-            try
-            {
+            try { 
+         
                 string status = "";
                 using (var client = new HttpClient())
                 {
@@ -50,13 +50,13 @@ namespace MainGateway.Services
                     var result = postTask.Result;
                     if (result.IsSuccessStatusCode)
                     {
-                        var data = result.Content.ReadFromJsonAsync<StatusDTO>();
+                        var data = result.Content.ReadAsStringAsync();
                         data.Wait();
-                        status = data.Result.status;
+                        status = data.Result;
 
                     }
+
                 }
-              
                 return status;
             }
             catch (Exception)
@@ -108,9 +108,9 @@ namespace MainGateway.Services
                     var result = postTask.Result;
                     if (result.IsSuccessStatusCode)
                     {
-                        var data = result.Content.ReadFromJsonAsync<StatusDTO>();
+                        var data = result.Content.ReadAsStringAsync();
                         data.Wait();
-                        status = data.Result.status;
+                        status = data.Result;
 
                     }
                 }
@@ -154,7 +154,7 @@ namespace MainGateway.Services
 
             return statusDTO;
         }
-        public IList<TransactionHistoryDTO> getTransactions(int customerId)
+        public List<TransactionHistoryDTO> getTransactions(int customerId)
         {
             List<TransactionHistoryDTO> cust = null;
             try

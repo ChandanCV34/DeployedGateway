@@ -11,6 +11,6 @@ namespace TransactionMS.Services
         public string DepositMoney(DepositDTO depositDTO);
         public string WithdrawMoney(DepositDTO depositDTO);
         public StatusDTO Transfer(TransferDTO transferDTO);
-        public IList<TransactionHistory> getTransactions(int customerId);
+        public List<TransactionHistory> getTransactions(int customerId);
     }
 }

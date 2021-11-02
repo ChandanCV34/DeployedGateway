@@ -24,10 +24,10 @@ namespace RulesApi.Controllers
 
         // GET 
         // http://localhost:5000/api/Rules/id?id=505&balance=50000
-        [HttpGet("id")]
-        public string evaluateMinBal(int id, [FromQuery] float balance)
+        [HttpGet("Accountid")]
+        public string evaluateMinBal(int Accountid, [FromQuery] float balance)
         {
-            return _rulesService.evaluateMinBal(id, balance);
+            return _rulesService.evaluateMinBal(Accountid, balance);
            
         }
         // GET
