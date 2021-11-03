@@ -29,10 +29,10 @@ namespace TransactionMS.Controllers
         //}
 
         // GET api/<TransactionHistoryController>/5
-        [HttpGet("getTransactions/{id}")]
-        public async Task<ActionResult<IList<TransactionHistory>>> Get(int id)
+        [HttpGet("getTransactions/{Accountid}")]
+        public async Task<ActionResult<IList<TransactionHistory>>> Get(int Accountid)
         {
-            return _service.getTransactions(id);
+            return _service.getTransactions(Accountid);
         }
 
 

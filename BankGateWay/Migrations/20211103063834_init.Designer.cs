@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BankGateWay.Migrations
 {
     [DbContext(typeof(EmployeeContext))]
-    [Migration("20211029082526_BankEmployee")]
-    partial class BankEmployee
+    [Migration("20211103063834_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

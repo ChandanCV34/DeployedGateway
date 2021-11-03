@@ -14,7 +14,7 @@ namespace MainGateway.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-   // [Authorize]
+    [Authorize]
     [EnableCors("MyPolicy")]
     public class TransactionHistoryController : ControllerBase
     {

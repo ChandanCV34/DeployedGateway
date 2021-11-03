@@ -34,7 +34,7 @@ namespace BankGateWay
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BankGateWay", Version = "v1" });
             });
-            services.AddDbContext<EmployeeContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:conCompany"]));
+            services.AddDbContext<EmployeeContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:conCompanys"]));
             services.AddScoped<EmployeeLoginService>();
         }
 
